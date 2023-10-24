@@ -7,30 +7,33 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    @IBOutlet weak var SwitchButton: UISwitch!
+final class ViewController: UIViewController {
+    @IBOutlet private weak var SwitchButton: UISwitch!
+    @IBOutlet private weak var switchLable: UILabel!
+    @IBOutlet private weak var forN1: UITextField!
+    @IBOutlet private weak var forN2: UITextField!
+    @IBOutlet private weak var result: UILabel!
+    @IBOutlet private weak var calculateButton: UIButton!
     
-    @IBOutlet weak var switchLable: UILabel!
     
-    @IBOutlet weak var forN1: UITextField!
-    @IBOutlet weak var forN2: UITextField!
-    @IBOutlet weak var result: UILabel!
-    @IBOutlet weak var calculateButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        forN1.keyboardType = .numberPad
+        forN2.keyboardType = .numberPad
+
     }
     
-    @IBAction func SwitchToChange(_ sender: Any) {
+    @IBAction private func SwitchToChange(_ sender: Any) {
         if SwitchButton.isOn {
             switchLable.text = "GCD"
-        }else {
+        } else {
             switchLable.text = "LCM"
             
         }
     }
     
-    @IBAction func calculate(_ sender: Any) {
+    @IBAction private func calculate(_ sender: Any) {
+             
         if  switchLable.text == "GCD",
             let text1 = forN1.text,
             let text2 = forN2.text,
@@ -64,7 +67,7 @@ class ViewController: UIViewController {
     }
     
     func calculateLCM(_ a: Int, _ b: Int) -> Int {
-        return a * b / calculateGCD(a, b)
+        a * b / calculateGCD(a, b)
     }
 }
 
